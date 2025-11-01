@@ -3,9 +3,11 @@
         <h2 class="text-4xl mb-5">Shop Popular Categories</h2>
     <owl-carousel-o [options]="customOptions" >
     @for (category of AllCategories; track category._id) {
-      <ng-template carouselSlide [id]="category._id" class="border-4">
-        <img [src]="category.image" [alt]="category.name" class="h-[250px] object-contain">
-        <p class="text-center">{{category.name}}</p>
+      <ng-template carouselSlide [id]="category._id" class="">
+        <div class="p-4">
+          <img [src]="category.image" [alt]="category.name" class="h-[250px] ">
+          <p class="text-center">{{category.name}}</p>
+        </div>
       </ng-template>
     }
   </owl-carousel-o>
