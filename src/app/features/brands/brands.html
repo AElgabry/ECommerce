@@ -1,0 +1,12 @@
+<section class="mycontainer">
+    <h1 class="text-center text-2xl font-bold">Our Brands</h1>
+    <div class="grid grid-cols-4">
+
+        
+    @for (brand of brands; track $index) 
+    {
+        <img class="w-full" [src]="brand.image" alt="">
+    }
+
+    </div>
+</section>

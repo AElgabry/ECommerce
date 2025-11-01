@@ -1,0 +1,11 @@
+<section class="mycontainer">
+    <form [formGroup]="payForm" action="" (ngSubmit)="submit()">
+        <app-form class="m-0.5" [control]="payForm.get('shippingAddress')?.get('details')" [type]="'text'" [id]="'det'" [label]="'Details'"></app-form>
+        <app-form class="m-0.5" [control]="payForm.get('shippingAddress')?.get('phone')" [type]="'tel'" [id]="'phone'" [label]="'Phone'"></app-form>
+        <app-form class="m-0.5" [control]="payForm.get('shippingAddress')?.get('city')" [type]="'text'" [id]="'city'" [label]="'City'"></app-form>
+    </form>
+    <div class="text-center">
+        <button class="bg-[#059212] text-white p-2.5 py w-1/4 me-1.5 rounded-sm mb-2.5 cursor-pointer">Cash Payment</button>
+        <button (click)="submit()" class="bg-[#059212] text-white p-2.5 py w-1/4 rounded-sm mb-2.5 cursor-pointer">VISA Payment</button>
+    </div>
+</section>

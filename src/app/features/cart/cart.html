@@ -1,0 +1,32 @@
+<section class="mycontainer ">
+    <div class="bg-gray-200 ps-1 pb-1">
+        <div class="flex justify-between">
+            <h1 class="text-2xl font-bold mb-2">Your Cart:</h1>
+            <p class="text-xl border-2 text-red-800 mb-2 p-2 cursor-pointer hover:bg-red-800 hover:text-white me-2" (click)="clearCartProducts()">Clear Cart</p>
+        </div>
+    <p class="mb-2">Total price: {{cartProducts.totalCartPrice}}EGP</p>
+    <div class="grid grid-cols-12">
+        @for  (item of cartProducts.products; track item._id) 
+        {
+        <div class="pic col-span-2">
+            <img class="w-3/4" [src]="item.product.imageCover" alt="">
+        </div>
+        <div class="details col-span-8 flex flex-col justify-evenly">
+            <h2 class="text-lg">{{item.product.title}}</h2>
+            <p>Price: {{item.price*item.count}}EGP</p>
+            <div class="flex items-center ">
+                <i (click)="deleteCartProducts(item.product._id)" class="fa-solid fa-trash-can cursor-pointer"></i>
+                <p (click)="deleteCartProducts(item.product._id)" class="m-0 cursor-pointer">Remove</p>
+            </div>
+        </div>
+
+        <div class="quantity col-span-2 flex items-center gap-2">
+            <i (click)="changeQuantity(item.product._id, item.count-1)" class="fa-solid fa-minus border-1 cursor-pointer"></i>
+            <p>{{item.count}}</p>
+            <i (click)="changeQuantity(item.product._id, item.count+1)" class="fa-solid fa-plus border-1 cursor-pointer"></i>
+        </div>
+        }
+    </div>
+    </div>
+    <button [routerLink]="['/checkout',cartId]" class="bg-[#059212] text-white p-2.5 py w-full rounded-sm mb-2.5 cursor-pointer my-2">ChechOut</button>
+</section>

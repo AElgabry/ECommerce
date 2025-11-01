@@ -1,0 +1,49 @@
+<section class="mycontainer ">
+    <h1 class="text-3xl mb-5 text-center font-bold">Register Now</h1>
+    <form [formGroup]="registerForm" action="" class="flex flex-col gap-y-2" (ngSubmit)="submit()">
+        
+        <app-form [control]="registerForm.get('name')" [type]="'text'" [id]="'name'" [label]="'Name'">Length must be greater than two characters</app-form>
+        <app-form [control]="registerForm.get('email')" [type]="'email'" [id]="'email'" [label]="'Email'"></app-form>
+        <app-form [control]="registerForm.get('password')" [id]="'password'" [label]="'Password'">Length must be greater than 6 characters</app-form>
+        <div class="repass">
+            <div class="relative">
+                <input formControlName="rePassword" [type]="flag?'password':'text'" id="rePassword" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                <label for="rePassword" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Re-Password</label>
+                <span (click)="flag=!flag">
+                    @if (flag==true) 
+                    {
+                        <i class="fa-solid fa-eye-slash absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer "></i>
+                    }
+                    @else 
+                    {
+                        <i class="fa-solid fa-eye absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer"></i>
+                    }
+                </span>
+            </div>
+            @if (registerForm.get("rePassword")?.touched)
+            {
+                @if (registerForm.get("rePassword")?.getError("required")) 
+            {
+                <div class="errors bg-red-700 text-white py-2 ps-2 rounded ">
+                    <li>Input is reguired </li>
+                </div>   
+            }
+            @else if (registerForm.errors) 
+            {
+                <div class="errors bg-red-700 text-white py-2 ps-2 rounded ">
+                    <li>Passwords don't match</li>
+                </div>
+            }
+            }
+        </div>
+        <app-form [control]="registerForm.get('phone')" [type]="'number'" [id]="'phone'" [label]="'Phone'"></app-form>
+        
+        <p class="text-center text-lg text-red-600">{{message}}</p>
+        <button  class="bg-[#059212] text-white p-2.5 py w-full rounded-sm mb-2.5 cursor-pointer">Submit 
+            @if (load==true) {
+                <i class="fa-solid fa-spinner animate-spin"></i>
+            }
+        </button>
+    </form>
+
+</section>

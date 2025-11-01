@@ -1,0 +1,53 @@
+<section class="mycontainer">
+    <h1 class="text-3xl font-bold text-center mb-5">Login Now</h1>
+    <form [formGroup]="loginForm" action="" class="gap-y-2 flex flex-col" (ngSubmit)="submit()">
+        <div class="email">
+            <div class="relative">
+                <input formControlName="email" type="text" id="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                <label for="email" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Email</label>
+            </div>
+            @if (loginForm.get("email")?.touched)
+            {
+                @if (loginForm.get("email")?.getError("required")) 
+            {
+                <div class="errors bg-red-700 text-white py-2 ps-2 rounded ">
+                    <li>Input is reguired </li>
+                </div>
+            }
+            @else if (loginForm.get("email")?.getError("pattern")) 
+            {
+                <div class="errors bg-red-700 text-white py-2 ps-2 rounded ">
+                    <li>Enter a valid email address</li>
+                </div>
+            }
+            }
+        </div>
+        <div class="pass">
+            <div class="relative">
+                <input formControlName="password" type="text" id="password" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                <label for="password" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
+            </div>
+             @if (loginForm.get("password")?.touched)
+            {
+                @if (loginForm.get("password")?.getError("required")) 
+            {
+                <div class="errors bg-red-700 text-white py-2 ps-2 rounded ">
+                    <li>Input is reguired </li>
+                </div>
+            }
+            @else if (loginForm.get("password")?.getError("minlength")) 
+            {
+                <div class="errors bg-red-700 text-white py-2 ps-2 rounded ">
+                    <li>Password length must be greater than five characters</li>
+                </div>
+            }
+            }
+        </div>
+        <p class="text-center text-lg text-red-600">{{message}}</p>
+        <button  class="bg-[#059212] text-white p-2.5 py w-full rounded-sm mb-2.5 cursor-pointer">Submit 
+            @if (load==true) {
+                <i class="fa-solid fa-spinner animate-spin"></i>
+            }
+        </button>
+    </form>
+</section>

@@ -1,0 +1,8 @@
+<section class="mycontainer ">
+    <div class="grid grid-cols-5">
+        @for (product of allProducts.slice(0,20); track product._id) 
+        {
+            <app-card [product]="product"></app-card>
+        }
+    </div>
+</section>
